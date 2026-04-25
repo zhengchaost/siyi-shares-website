@@ -38,7 +38,7 @@ const BUSINESSES = [
     bg: "#249477",
     accent: "rgba(255,255,255,0.7)",
     qr: "/images/siyi-qr-yiwai.png",
-    link: "https://cn.segxm.com/unknow",
+    link: "/yiwai.html",
   },
   {
     index: "03",

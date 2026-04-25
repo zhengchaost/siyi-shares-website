@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>异外文化 | Unknown — 探索未知，创造异外</title>
+  <meta name="description" content="异外文化 unknown — 2018年成立于厦门，专注于商业品牌广告全案的综合服务公司。探索未知，创造异外。" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            siyi: {
+              green: '#249477',
+              'green-dark': '#2D5A4E',
+              'green-light': '#EEF7F4',
+              dark: '#1A1A1A',
+              'dark-2': '#2D2D2D',
+              gray: '#888888',
+              'light-gray': '#F5F5F5',
+            }
+          },
+          fontFamily: {
+            sans: ['Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+            serif: ['Noto Serif SC', 'STSong', 'SimSun', 'serif'],
+            mono: ['Space Grotesk', 'Courier New', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif; font-weight: 700; letter-spacing: -0.02em; }
+    .section-index { font-family: 'Space Grotesk', 'Courier New', monospace; letter-spacing: 0.15em; color: #249477; text-transform: uppercase; font-size: 0.75rem; }
+    .btn-siyi { color: #fff; letter-spacing: 0.05em; background-color: #249477; padding: 0.75rem 2rem; font-size: 0.875rem; border-radius: 2px; transition: background-color 0.3s, transform 0.2s; display: inline-block; border: none; cursor: pointer; }
+    .btn-siyi:hover { background-color: #2D5A4E; transform: translateY(-1px); }
+    .siyi-quote { border-left: 3px solid #249477; padding-left: 1.5rem; }
+    .fade-in-up { opacity: 0; transition: opacity 0.7s, transform 0.7s; transform: translateY(24px); }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    .container { width: 100%; margin: 0 auto; padding: 0 1.5rem; }
+    @media (min-width: 640px) { .container { padding: 0 2rem; } }
+    @media (min-width: 1024px) { .container { max-width: 1440px; padding: 0 4rem; } }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background-color: transparent;">
+    <div class="container flex items-center justify-between py-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/images/siyi-logo-white.webp" alt="SEG" id="nav-logo" class="h-8 transition-all" />
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="nav-link text-sm transition-colors hover:text-siyi-green" style="color: #fff;">关于异外</a>
+        <a href="#services" class="nav-link text-sm transition-colors hover:text-siyi-green" style="color: #fff;">服务内容</a>
+        <a href="#cases" class="nav-link text-sm transition-colors hover:text-siyi-green" style="color: #fff;">精选案例</a>
+        <a href="#clients" class="nav-link text-sm transition-colors hover:text-siyi-green" style="color: #fff;">合作伙伴</a>
+        <a href="#contact" class="btn-siyi text-sm">联系我们</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-siyi-dark">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 50%, rgba(36,148,119,0.3) 0%, transparent 70%);"></div>
+    </div>
+    <div class="container relative z-10 pt-24">
+      <div class="max-w-4xl">
+        <p class="section-index mb-6" style="color: #249477;">UNKNOWN · 异外文化</p>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white" style="font-family: 'Noto Serif SC', serif;">
+          探索未知
+          <br />
+          创造异外
+        </h1>
+        <p class="text-lg md:text-xl mb-4" style="color: rgba(255,255,255,0.5); letter-spacing: 0.1em; font-family: 'Space Grotesk', monospace;">
+          Explore the Unknown, Create the Unseen.
+        </p>
+        <p class="text-base md:text-lg mb-10" style="color: rgba(255,255,255,0.6); line-height: 1.9;">
+          2018年成立于厦门，专注于商业品牌广告全案的综合服务公司
+        </p>
+        <div class="flex items-center gap-4">
+          <a href="#about" class="btn-siyi">了解异外</a>
+          <a href="#cases" class="text-sm font-medium px-8 py-3.5 transition-all duration-300 hover:bg-white/10" style="border: 1px solid rgba(255,255,255,0.6); color: white; border-radius: 2px; letter-spacing: 0.05em;">
+            精选案例
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll -->
+    <div class="absolute bottom-8 right-8 md:right-16 flex flex-col items-center gap-2 z-10">
+      <span class="text-xs tracking-widest" style="color: rgba(255,255,255,0.5); writing-mode: vertical-rl;">SCROLL</span>
+      <div class="w-px h-12 animate-pulse" style="background-color: #249477;"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section style="background-color: #1A1A1A;">
+    <div class="container py-8">
+      <div class="flex flex-col divide-y divide-white/30 md:flex-row md:divide-x md:divide-y-0">
+        <div class="flex flex-col items-center justify-center px-8 py-6 text-white md:w-1/3">
+          <div class="text-4xl font-bold md:text-5xl">7<span class="text-xl">年</span></div>
+          <p class="mt-1 text-sm font-medium tracking-wide">品牌深耕</p>
+          <p class="mt-0.5 text-xs" style="color: rgba(255,255,255,0.4);">2018至今</p>
+        </div>
+        <div class="flex flex-col items-center justify-center px-8 py-6 text-white md:w-1/3">
+          <div class="text-4xl font-bold md:text-5xl">3<span class="text-xl">大板块</span></div>
+          <p class="mt-1 text-sm font-medium tracking-wide">核心业务</p>
+          <p class="mt-0.5 text-xs" style="color: rgba(255,255,255,0.4);">商业空间 · 品牌建设 · IP文创</p>
+        </div>
+        <div class="flex flex-col items-center justify-center px-8 py-6 text-white md:w-1/3">
+          <div class="text-4xl font-bold md:text-5xl">30<span class="text-xl">+</span></div>
+          <p class="mt-1 text-sm font-medium tracking-wide">服务品牌</p>
+          <p class="mt-0.5 text-xs" style="color: rgba(255,255,255,0.4);">国企央企 · 一线品牌</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="container">
+      <div class="fade-in-up">
+        <p class="section-index mb-4">01 / ABOUT</p>
+        <h2 class="mb-12 text-3xl md:text-4xl lg:text-5xl" style="color: #1A1A1A;">关于异外</h2>
+      </div>
+
+      <div class="flex flex-col gap-16 lg:flex-row">
+        <div class="flex-1 fade-in-up">
+          <p class="mb-6 text-base md:text-lg leading-relaxed" style="line-height: 1.9;">
+            异外 unknown，2018年成立于厦门，是一家专注于商业品牌广告全案的综合服务公司。长期深耕于商业空间、品牌建设与商业IP三大板块，提供从商业品牌设计、内容运营企划到IP文创设计的全链路服务，致力于输出兼具创意与落地性的品牌推广解决方案。
+          </p>
+          <p class="text-base leading-relaxed" style="color: #555; line-height: 2.0;">
+            除品牌企划服务外，亦积极参与商业资产项目的招商与运营实践，形成"策略 × 设计 × 运营"的一体化优势。
+          </p>
+        </div>
+        <div class="flex-1 fade-in-up">
+          <div class="siyi-quote mb-6">
+            <p class="text-lg md:text-xl font-medium" style="line-height: 1.8;">
+              探索未知，创造异外。
+            </p>
+          </div>
+          <p class="text-sm" style="color: #888;">
+            Explore the Unknown, Create the Unseen.
+          </p>
+          <p class="mt-6 text-sm" style="color: #888;">
+            合作伙伴涵盖国企央企（建发&联发、保利、中交等）与一线品牌（小马宋品牌咨询、摩登天空MVM、青蛙王子、宝洁等）。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="background-color: #1A1A1A;" class="py-24 md:py-32">
+    <div class="container">
+      <div class="fade-in-up">
+        <p class="section-index mb-4">02 / SERVICES</p>
+        <h2 class="mb-16 text-3xl md:text-4xl lg:text-5xl text-white">我们擅长</h2>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Service 1 -->
+        <div class="fade-in-up p-8" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px;">
+          <span class="section-index" style="color: #249477; font-size: 2rem; font-weight: 700;">01</span>
+          <h3 class="mt-4 mb-3 text-xl font-bold text-white">品牌体系化梳理</h3>
+          <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.6); line-height: 1.9;">
+            从品牌定位到CIS焕新升级，体系搭建以及落地标准化执行。协助品牌建立统一的视觉符号与认知标准，对内统一认知，对外提升影响力。
+          </p>
+        </div>
+        <!-- Service 2 -->
+        <div class="fade-in-up p-8" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px;">
+          <span class="section-index" style="color: #249477; font-size: 2rem; font-weight: 700;">02</span>
+          <h3 class="mt-4 mb-3 text-xl font-bold text-white">陪伴同行品牌生长</h3>
+          <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.6); line-height: 1.9;">
+            陪伴建发商管7年，完成从搭建到落地的全过程。深度参与品牌成长周期，以长期视角持续优化品牌策略与视觉呈现。
+          </p>
+        </div>
+        <!-- Service 3 -->
+        <div class="fade-in-up p-8" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px;">
+          <span class="section-index" style="color: #249477; font-size: 2rem; font-weight: 700;">03</span>
+          <h3 class="mt-4 mb-3 text-xl font-bold text-white">多样化的品牌道具</h3>
+          <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.6); line-height: 1.9;">
+            插画IP、视频、微推创意，自有团队全链路打造。从IP基础形象设计到家族设定、礼品周边、盲盒潮玩，提供完整的品牌道具体系。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section id="cases" class="py-24 md:py-32">
+    <div class="container">
+      <div class="fade-in-up">
+        <p class="section-index mb-4">03 / CASES</p>
+        <h2 class="mb-16 text-3xl md:text-4xl lg:text-5xl" style="color: #1A1A1A;">精选案例</h2>
+      </div>
+
+      <div class="flex flex-col gap-16">
+        <!-- Case 1: 中交和美天地 -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">01</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">中交和美天地</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">开业周期视觉 + 自媒体运营全案</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              扎根在地文化习俗与特征，创造多元化的用户场景体验，链接展览机构资源，驱动城市艺术与文创活动，输出并传递"用艺术连接美好"的品牌口号。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 2: 鹭潮·鼓浪屿美院 -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">02</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">鹭潮·鼓浪屿美院</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">品牌定位 + 文旅生态构建</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              以艺术为主题、文化输出为窗口的国际复合型文旅生态系统。扎根鼓浪屿在地文化，链接展馆资源，驱动城市艺文活动与文旅趋势。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 3: 联发集团 -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">03</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">联发集团品牌</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">品牌形象升级 + 运营规划</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              以"有新意，更在意"年度传播口号为核心，从人文方向升级项目视觉与线上内容，对IP进行升级优化。集合肆意广告+媒介传播矩阵，对"新厦门风"发布会全维度推广。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 4: 建发商管 -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">04</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">建发商管</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">品牌定位 + 7年陪伴生长</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              确立"美好场景架构师"品牌定位，建立"5见美好"服务体系，统一品牌视觉符号，通过品牌IP活动进行全方位营销推广。7年陪伴，完成从搭建到落地的全过程。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 5: 建发JFC品尚中心 -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">05</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">建发JFC品尚中心</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">概念升级 + 后疫情复苏</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              重新定位商业艺术空间，推出"非常生活，非常JFC"主题概念，升级标志性视觉。帮助JFC在后疫情时代快速复苏，恢复客流。此概念至今仍被项目沿用。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 6: 建发湾悦城 -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">06</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">建发湾悦城</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">IP全案 — 湾悦兔</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              2016年开业期IP形象开发，2020年IP 2.0迭代升级。通过湾悦兔故事延续与精准定位，使IP形象更时尚、更契合年轻人审美，助力项目完成2.0升级。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 7: IOI MALL -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">07</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">IOI MALL</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">IP全案策划 + 形象设计</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              以马来西亚国鸟"犀鸟"为原型打造IP形象，构建城市探索故事背景。首次入驻厦门，打造更亲民的商业形象，实现一站式体验式欢乐消费。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 8: 摩登天空MDSK -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">08</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">摩登天空MDSK音乐节</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">IP全案设计 + 活动主视觉</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              2023-2024年度摩登天空说唱厂牌IP全案设计以及活动主视觉。
+            </p>
+          </div>
+        </div>
+
+        <!-- Case 9: 自持IP潮玩 -->
+        <div class="fade-in-up flex flex-col gap-8 lg:flex-row lg:items-start">
+          <div class="lg:w-1/3 shrink-0">
+            <span class="section-index" style="font-size: 1.5rem; font-weight: 700;">09</span>
+            <h3 class="mt-2 text-2xl font-bold" style="color: #1A1A1A;">自持IP潮玩运营</h3>
+            <p class="mt-1 text-xs tracking-widest" style="color: #249477;">自主品牌 + 私域运营</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm leading-relaxed" style="color: #555; line-height: 1.9;">
+              自主潮玩品牌开发与运营，通过小红书平台与C端年轻用户群体建立沟通。涵盖科幻主题、萌系少女及甜丧萝莉等不同情绪价值的产品线，基于销售节点进行私域运营。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section id="clients" style="background-color: #F5F5F5;" class="py-24 md:py-32">
+    <div class="container">
+      <div class="fade-in-up">
+        <p class="section-index mb-4">04 / CLIENTS</p>
+        <h2 class="mb-12 text-3xl md:text-4xl" style="color: #1A1A1A;">合作伙伴</h2>
+      </div>
+      <div class="fade-in-up">
+        <p class="mb-8 text-sm" style="color: #888;">2018-2025 Selected Clients</p>
+        <div class="flex flex-wrap gap-4">
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">联发集团</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">建发商管</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">中交集团</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">保利地产</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">IOI MALL</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">宝龙商业</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">摩登天空MDSK</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">小马宋品牌咨询</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">宝洁 P&G</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">汤臣倍健</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">七匹狼</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">特步</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">361°</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">美的</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">OLAY</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">欧暇·地中海</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">认养一头牛</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">安通控股</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">泊寓</span>
+          <span class="px-5 py-2.5 text-sm bg-white" style="color: #1A1A1A; border-radius: 2px; border: 1px solid #eee;">苏阁鲜茶</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 md:py-32">
+    <div class="container">
+      <div class="flex flex-col gap-16 lg:flex-row">
+        <div class="flex-1 fade-in-up">
+          <p class="section-index mb-4">05 / CONTACT</p>
+          <h2 class="mb-4 text-3xl md:text-4xl" style="color: #1A1A1A;">联系我们</h2>
+          <p class="mb-12 text-base leading-relaxed" style="color: #555; line-height: 2.0; max-width: 480px;">
+            未来，异外 unknown 期待与更多伙伴携手，探索未知，创造异外。
+          </p>
+          <div style="height: 3px; background-color: #249477; margin-bottom: 0;"></div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-8 py-6" style="border-bottom: 1px solid #eee;">
+              <span class="shrink-0 text-xs tracking-widest" style="color: #249477; font-family: 'Space Grotesk', monospace; width: 52px;">品牌</span>
+              <span class="text-base" style="color: #1A1A1A;">异外文化 unknown</span>
+            </div>
+            <div class="flex items-center gap-8 py-6" style="border-bottom: 1px solid #eee;">
+              <span class="shrink-0 text-xs tracking-widest" style="color: #249477; font-family: 'Space Grotesk', monospace; width: 52px;">归属</span>
+              <span class="text-base" style="color: #1A1A1A;">肆意股份 · 异外文化</span>
+            </div>
+            <div class="flex items-center gap-8 py-6" style="border-bottom: 1px solid #eee;">
+              <span class="shrink-0 text-xs tracking-widest" style="color: #249477; font-family: 'Space Grotesk', monospace; width: 52px;">总部</span>
+              <span class="text-base" style="color: #1A1A1A;">厦门市集美区集杏海堤102号401室</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 fade-in-up">
+          <div class="flex flex-col items-center">
+            <p class="mb-4 text-sm font-medium" style="color: #1A1A1A;">异外文化二维码</p>
+            <img src="/images/siyi-qr-yiwai.png" alt="异外文化二维码" class="mb-3" style="width: 180px; height: 180px;" loading="lazy" />
+            <p class="text-xs" style="color: #888;">扫码联系异外文化</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background-color: #0a0a0a;">
+    <div class="container py-8">
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <div class="flex items-center gap-3">
+          <img src="/images/siyi-icon.jpg" alt="肆意股份" class="w-7 h-7 rounded-sm object-cover opacity-80" />
+          <span class="text-sm" style="color: rgba(255,255,255,0.4);">© 2025 异外文化 unknown. 肆意股份旗下品牌</span>
+        </div>
+        <div class="flex gap-6">
+          <a href="/" class="text-xs transition-colors duration-300 hover:text-white" style="color: rgba(255,255,255,0.35);">返回首页</a>
+          <a href="#about" class="text-xs transition-colors duration-300 hover:text-white" style="color: rgba(255,255,255,0.35);">关于异外</a>
+          <a href="#cases" class="text-xs transition-colors duration-300 hover:text-white" style="color: rgba(255,255,255,0.35);">精选案例</a>
+          <a href="#contact" class="text-xs transition-colors duration-300 hover:text-white" style="color: rgba(255,255,255,0.35);">联系我们</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const navLogo = document.getElementById('nav-logo');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY > 50;
+      navbar.style.backgroundColor = scrolled ? 'rgba(255,255,255,0.97)' : 'transparent';
+      navbar.style.backdropFilter = scrolled ? 'blur(12px)' : 'none';
+      navbar.style.boxShadow = scrolled ? '0 1px 8px rgba(0,0,0,0.06)' : 'none';
+      navLogo.style.filter = scrolled ? 'brightness(0)' : 'none';
+      navLinks.forEach(link => {
+        link.style.color = scrolled ? '#1A1A1A' : '#fff';
+      });
+    });
+
+    // Fade in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
