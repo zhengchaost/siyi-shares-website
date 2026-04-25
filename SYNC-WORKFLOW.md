@@ -42,10 +42,11 @@
 2. 拉取服务器当前网站目录快照
 3. 以本地构建为主生成合并目录
 4. 将服务器上“本地暂缺”的文件补齐到合并目录（查缺补漏）
-5. 用合并目录回写 `dist/public`
-6. 同步到 `deployed-backup` 仓库
-7. 部署到 ECS（rsync）
-8. 对比本地与服务器 `index.html` 哈希做校验
+5. 用 `deployed-backup` 的独立静态页面（除 `index.html`）覆盖合并目录
+6. 用合并目录回写 `dist/public`
+7. 同步到 `deployed-backup` 仓库
+8. 部署到 ECS（rsync）
+9. 对比本地与服务器 `index.html` 哈希做校验
 
 ## 推送 GitHub
 

@@ -50,6 +50,8 @@ const BUSINESSES = [
     color: "#1A1A1A",
     bg: "#F5F5F5",
     accent: "#249477",
+    qr: "/images/siyi-qr-seg-miniprogram.png",
+    link: "/chaozan-travel.html",
   },
 ];
 

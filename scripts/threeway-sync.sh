@@ -81,12 +81,35 @@ for root, _, files in os.walk(snapshot):
             print(f"  + kept server-only file: {rel}")
 PY
 
-echo "[5/8] Replace dist/public with merged result"
+echo "[5/8] Overlay backup static html pages"
+python3 - "$BACKUP_REPO_PATH" "$MERGE_DIR" <<'PY'
+import os
+import shutil
+import sys
+
+backup_repo, merge = sys.argv[1], sys.argv[2]
+
+for file_name in os.listdir(backup_repo):
+    if not file_name.endswith(".html"):
+        continue
+    if file_name == "index.html":
+        continue
+
+    src = os.path.join(backup_repo, file_name)
+    if not os.path.isfile(src):
+        continue
+
+    dst = os.path.join(merge, file_name)
+    shutil.copy2(src, dst)
+    print(f"  + synced backup html: {file_name}")
+PY
+
+echo "[6/8] Replace dist/public with merged result"
 rm -rf "$DIST_DIR"
 mkdir -p "$DIST_DIR"
 rsync -a "$MERGE_DIR/" "$DIST_DIR/"
 
-echo "[6/8] Sync merged files to backup repo"
+echo "[7/8] Sync merged files to backup repo"
 rsync -a --delete \
   --exclude ".git/" \
   --exclude ".gitignore" \
@@ -94,13 +117,13 @@ rsync -a --delete \
   "$MERGE_DIR/" \
   "$BACKUP_REPO_PATH/"
 
-echo "[7/8] Deploy merged files to ECS"
+echo "[8/8] Deploy merged files to ECS"
 rsync -az --delete \
   -e "ssh -i \"$SSH_KEY_PATH\" -o StrictHostKeyChecking=no -o ConnectTimeout=15" \
   "$MERGE_DIR/" \
   "${SERVER_TARGET}:${SERVER_WEB_ROOT}/"
 
-echo "[8/8] Verify key file hash (index.html)"
+echo "[9/9] Verify key file hash (index.html)"
 local_hash="$(shasum -a 256 "$DIST_DIR/index.html" | awk '{print $1}')"
 server_hash="$(
   ssh -i "$SSH_KEY_PATH" -o StrictHostKeyChecking=no -o ConnectTimeout=15 \
