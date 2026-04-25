@@ -2,3 +2,6 @@ node_modules/
 dist/
 .DS_Store
 *.local
+scripts/threeway-sync.env
+.sync-tempkey.pem
+.sync-tmp/
