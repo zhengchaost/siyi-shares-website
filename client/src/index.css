@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-siyi-green: oklch(0.565 0.126 168.5);
+  --color-siyi-green-dark: oklch(0.45 0.11 168.5);
+  --color-siyi-green-light: oklch(0.92 0.04 168.5);
+  --color-siyi-dark: oklch(0.14 0 0);
+  --color-siyi-dark-2: oklch(0.22 0 0);
+  --color-siyi-gray: oklch(0.55 0 0);
+  --color-siyi-light-gray: oklch(0.96 0 0);
+  --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-serif: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+  --font-mono: 'Space Grotesk', 'Courier New', monospace;
+  --radius: 0.25rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-siyi-dark);
+  background: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.section-index {
+  font-family: var(--font-mono);
+}
+
+.btn-siyi {
+  background-color: var(--color-siyi-green);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-siyi:hover {
+  background-color: var(--color-siyi-green-dark);
+}
+
+.siyi-quote {
+  border-left: 3px solid var(--color-siyi-green);
+  padding-left: 1.5rem;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
