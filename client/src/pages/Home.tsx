@@ -2,8 +2,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
 /* ── Hero background ── */
-const HERO_BG =
-  "/images/siyi-space-rendered.jpg";
+const HERO_BG = "/images/siyi-space-rendered.jpg";
+const HERO_VIDEO = "/videos/hero-skyline.mp4";
 
 /* ── Stats ── */
 const STATS = [
@@ -224,9 +224,14 @@ export default function Home() {
 
       {/* ── Hero ── */}
       <section className="relative flex min-h-screen items-end overflow-hidden pb-24">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_BG})` }}
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={HERO_VIDEO}
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={HERO_BG}
         />
         <div className="absolute inset-0 bg-black/45" />
 
