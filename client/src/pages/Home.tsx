@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 
 /* ── Hero background ── */
 const HERO_BG =
-  "https://d2x6zkkdzr5t9k.cloudfront.net/310519663308191654/KvErCdkHiKu9JCSirwCMH7/siyi-hero-bg-2rj6XLYXznofyUpoU7QzBJ.webp";
+  "/images/siyi-space-rendered.jpg";
 
 /* ── Stats ── */
 const STATS = [
-  { num: 20, suffix: "+", label: "年行业深耕", sub: "2004年至今" },
+  { num: 14, suffix: "+", label: "年行业深耕", sub: "2012年至今" },
   { num: 3, suffix: "", label: "大业务板块", sub: "策划·运营·MCN" },
   { num: 3, suffix: "", label: "城市布局", sub: "厦门·福州·佛山" },
 ];
@@ -26,6 +26,9 @@ const BUSINESSES = [
     accent: "#249477",
     qr: "/images/siyi-qr-seg-miniprogram.png",
     link: "/target-convey.html",
+    cover: "/images/siyi-project-inipark.jpg",
+    overlay: "rgba(45, 90, 78, 0.75)",
+    cta: "了解更多",
   },
   {
     index: "02",
@@ -39,6 +42,9 @@ const BUSINESSES = [
     accent: "rgba(255,255,255,0.7)",
     qr: "/images/siyi-qr-yiwai.png",
     link: "/yiwai.html",
+    cover: "/images/siyi-project-zhangzhou.webp",
+    overlay: "rgba(36, 148, 119, 0.76)",
+    cta: "了解更多",
   },
   {
     index: "03",
@@ -52,6 +58,9 @@ const BUSINESSES = [
     accent: "#249477",
     qr: "/images/siyi-qr-seg-miniprogram.png",
     link: "/chaozan-travel.html",
+    cover: "/images/siyi-project-wuyuanwan.webp",
+    overlay: "rgba(26, 26, 26, 0.72)",
+    cta: "了解更多",
   },
 ];
 
@@ -214,16 +223,17 @@ export default function Home() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="relative flex min-h-screen items-center overflow-hidden">
+      <section className="relative flex min-h-screen items-end overflow-hidden pb-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${HERO_BG})` }}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/45" />
 
         <div className="container relative z-10 pt-24">
           <div className="max-w-3xl">
-            <p className="section-index mb-6" style={{ color: "#249477" }}>
+            <div className="mb-6 h-px w-12" style={{ backgroundColor: "#C9A96E" }} />
+            <p className="section-index mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>
               SUPER ENERGY GROUP · 肆意股份
             </p>
             <h1
@@ -236,10 +246,7 @@ export default function Home() {
               <br />
               重塑不动产价值
             </h1>
-            <p
-              className="mb-8 text-base leading-relaxed md:text-lg"
-              style={{ color: "rgba(255,255,255,0.7)", lineHeight: "1.9" }}
-            >
+            <p className="mb-8 text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.7)", lineHeight: "1.9" }}>
               国内领先的地产营销与商业运营服务机构
             </p>
             <p className="mb-10 text-sm tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
@@ -306,7 +313,7 @@ export default function Home() {
             </h2>
           </FadeIn>
 
-          <div className="flex flex-col gap-16 lg:flex-row">
+          <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
             <div className="flex-1">
               <FadeIn>
                 <p className="mb-6 text-base leading-relaxed md:text-lg" style={{ lineHeight: "1.9" }}>
@@ -332,46 +339,29 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Space image */}
-          <FadeIn className="mt-16">
-            <div className="relative overflow-hidden" style={{ borderRadius: "2px" }}>
-              <img
-                src="/images/siyi-space-rendered.jpg"
-                alt="肆意Space · 园博苑inipark"
-                className="relative z-10 w-full object-cover"
-                style={{ borderRadius: "2px", maxHeight: "520px" }}
-                loading="lazy"
-              />
-              <div
-                className="absolute bottom-4 left-4 z-20 px-3 py-1.5"
-                style={{ backgroundColor: "rgba(0,0,0,0.6)", borderRadius: "2px" }}
-              >
-                <span className="text-xs text-white opacity-80">肆意Space · 园博苑inipark</span>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Key locations */}
           <FadeIn className="mt-12">
-            <div className="flex flex-col gap-8 md:flex-row md:gap-16">
+            <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+              <div className="col-span-1 overflow-hidden lg:col-span-2" style={{ borderRadius: "2px" }}>
+                <img
+                  src="/images/siyi-space-rendered.jpg"
+                  alt="肆意股份空间渲染图"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  style={{ aspectRatio: "16 / 9" }}
+                  loading="lazy"
+                />
+              </div>
               {[
-                { name: "肆意股份总部", img: "/images/siyi-space-new.jpg" },
+                { name: "园博苑 inipark", img: "/images/siyi-project-inipark.jpg" },
                 { name: "漳州古城", img: "/images/siyi-project-zhangzhou.webp" },
-                { name: "异外文化", img: "/images/siyi-project-wuyuanwan.webp" },
               ].map((item) => (
-                <div key={item.name} className="flex-1">
-                  <div className="overflow-hidden" style={{ borderRadius: "2px" }}>
-                    <img
-                      src={item.img}
-                      alt={item.name}
-                      className="w-full object-cover transition-transform duration-500 hover:scale-105"
-                      style={{ height: "240px" }}
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="mt-3 text-sm" style={{ color: "#888" }}>
-                    {item.name}
-                  </p>
+                <div key={item.name} className="overflow-hidden" style={{ borderRadius: "2px" }}>
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                    style={{ aspectRatio: "1 / 1" }}
+                    loading="lazy"
+                  />
                 </div>
               ))}
             </div>
@@ -394,63 +384,70 @@ export default function Home() {
             </h2>
           </FadeIn>
 
-          <div className="mt-16 flex flex-col gap-1">
+          <div className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-3">
             {BUSINESSES.map((biz) => (
               <FadeIn key={biz.name}>
-                <a
-                  href={biz.link || "#"}
-                  className="group block transition-all duration-300"
-                  style={{ backgroundColor: biz.bg, borderRadius: "2px" }}
+                <div
+                  className="group relative block cursor-pointer overflow-hidden transition-all duration-300"
+                  style={{ borderRadius: "2px", aspectRatio: "4 / 5" }}
                 >
-                  <div className="flex flex-col gap-6 p-8 md:flex-row md:items-start md:gap-12 md:p-12">
-                    {/* Left: index + tag */}
-                    <div className="shrink-0 md:w-32">
+                  <img
+                    src={biz.cover}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div
+                    className="absolute inset-0 transition-colors duration-300"
+                    style={{ backgroundColor: biz.overlay }}
+                  />
+
+                  <div className="relative z-10 flex h-full flex-col justify-between p-8">
+                    <div>
+                      <p className="mb-1 text-xs uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.55)" }}>
+                        {biz.tag}
+                      </p>
                       <span
-                        className="section-index"
-                        style={{ color: biz.accent, fontSize: "2rem", fontWeight: 700 }}
+                        className="font-serif text-6xl"
+                        style={{ color: "rgba(255,255,255,0.2)", lineHeight: 1 }}
                       >
                         {biz.index}
                       </span>
-                      <p className="mt-2 text-xs tracking-widest" style={{ color: biz.accent }}>
-                        {biz.tag}
-                      </p>
                     </div>
 
-                    {/* Middle: name + desc */}
-                    <div className="flex-1">
-                      <h3 className="mb-1 text-2xl font-bold md:text-3xl" style={{ color: biz.color }}>
+                    <div>
+                      <h3 className="mb-1 text-3xl font-bold text-white">
                         {biz.name}
                       </h3>
-                      <p className="mb-1 text-xs tracking-widest" style={{ color: biz.accent }}>
+                      <p className="mb-3 text-xs tracking-widest" style={{ color: "rgba(255,255,255,0.7)" }}>
                         {biz.fullName}
                       </p>
-                      <p className="mb-4 text-xs" style={{ color: biz.color === "white" ? "rgba(255,255,255,0.5)" : "#888" }}>
+                      <p className="mb-4 text-xs" style={{ color: "rgba(255,255,255,0.56)" }}>
                         {biz.year}
                       </p>
                       <p
                         className="text-sm leading-relaxed"
-                        style={{
-                          color: biz.color === "white" ? "rgba(255,255,255,0.7)" : "#555",
-                          lineHeight: "1.9",
-                        }}
+                        style={{ color: "rgba(255,255,255,0.84)", lineHeight: "1.9" }}
                       >
                         {biz.desc}
                       </p>
-                    </div>
-
-                    {/* Right: QR */}
-                    <div className="shrink-0">
-                      {biz.qr && (
-                        <img
-                          src={biz.qr}
-                          alt={`${biz.name}二维码`}
-                          className="h-24 w-24 object-contain opacity-70 transition-opacity group-hover:opacity-100"
-                          loading="lazy"
-                        />
-                      )}
+                      <div className="mt-6 flex items-center gap-2 text-sm font-medium" style={{ color: "#C9A96E" }}>
+                        <span>{biz.cta}</span>
+                        <span className="transition-transform group-hover:translate-x-1">→</span>
+                      </div>
                     </div>
                   </div>
-                </a>
+
+                  {/* 整块可点：链接叠在最上层，避免依赖 pointer-events 穿透（部分内置浏览器不可靠） */}
+                  <a
+                    href={biz.link || "#"}
+                    className="absolute inset-0 z-20"
+                    aria-label={`进入${biz.name}独立页面`}
+                  >
+                    <span className="sr-only">{biz.name}</span>
+                  </a>
+                </div>
               </FadeIn>
             ))}
           </div>
@@ -502,7 +499,7 @@ export default function Home() {
             {MCN_CREATORS.map((creator) => (
               <FadeIn key={creator.name}>
                 <div
-                  className="p-6 transition-all duration-300"
+                  className="p-6 transition-all duration-300 hover:bg-white/10"
                   style={{
                     backgroundColor: "rgba(255,255,255,0.03)",
                     border: "1px solid rgba(255,255,255,0.08)",
@@ -516,12 +513,7 @@ export default function Home() {
                         {creator.tag}
                       </p>
                     </div>
-                    <img
-                      src={creator.qr}
-                      alt={`${creator.name}二维码`}
-                      className="h-16 w-16 shrink-0 object-contain"
-                      loading="lazy"
-                    />
+                    <img src={creator.qr} alt={`${creator.name}二维码`} className="h-20 w-20 shrink-0 object-cover" loading="lazy" />
                   </div>
                   <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)", lineHeight: "1.8" }}>
                     {creator.desc}
@@ -622,17 +614,19 @@ export default function Home() {
 
             <div className="flex-1">
               <FadeIn>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center text-center">
                   <p className="mb-4 text-sm font-medium" style={{ color: "#1A1A1A" }}>
                     联系二维码
                   </p>
-                  <img
-                    src="/images/siyi-contact-wechat-qr.png"
-                    alt="联系二维码"
-                    className="mb-3"
-                    style={{ width: "180px", height: "180px" }}
-                    loading="lazy"
-                  />
+                  <div className="inline-block bg-white p-4 shadow-lg" style={{ borderRadius: "2px" }}>
+                    <img
+                      src="/images/siyi-contact-wechat-qr.png"
+                      alt="联系二维码"
+                      className="mb-0"
+                      style={{ width: "160px", height: "160px", objectFit: "contain" }}
+                      loading="lazy"
+                    />
+                  </div>
                   <p className="text-xs" style={{ color: "#888" }}>
                     扫码联系我们
                   </p>
