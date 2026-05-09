@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例详情 | 肆意股份</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            seg: {
+              green: '#2D5A4E', 'green-dark': '#1E3D35', 'green-deeper': '#162D27',
+              'green-light': '#3D7A6A', 'green-pale': '#EBF2F0',
+              gold: '#C9A84C', 'gold-light': '#E2C47A',
+              charcoal: '#1A1A1A', muted: '#6B7280', border: '#E5EAE8',
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            serif: ['"Noto Serif SC"', '"Source Han Serif SC"', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Serif SC', serif; color: #1A1A1A; background: #fff; }
+    .case-tag { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+    .section-eyebrow { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A84C; font-weight: 500; }
+    .detail-content { line-height: 1.9; }
+    .detail-content p { margin-bottom: 1em; }
+    .detail-content img { max-width: 100%; border-radius: 4px; margin: 1.5em 0; }
+    .detail-content h2, .detail-content h3 { font-weight: 600; margin: 1.5em 0 0.5em; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-seg-border/30">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-display text-xl font-bold text-seg-charcoal">GREAT DECISION</a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="/" class="text-seg-charcoal/75 hover:text-seg-charcoal text-sm font-sans transition-colors">首页</a>
+      <a href="/target-convey.html" class="text-seg-charcoal/75 hover:text-seg-charcoal text-sm font-sans transition-colors">目标传达</a>
+      <a href="/portfolio.html" class="text-seg-charcoal/75 hover:text-seg-charcoal text-sm font-sans transition-colors">案例作品集</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Content -->
+<section class="pt-24 pb-20" id="detailSection">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Back -->
+    <a href="/portfolio.html" class="inline-flex items-center gap-2 text-seg-muted hover:text-seg-charcoal font-sans text-sm mb-8 transition-colors">
+      ← 返回案例列表
+    </a>
+
+    <!-- Loading -->
+    <div id="loading" class="text-center py-20">
+      <p class="text-seg-muted font-sans">加载中...</p>
+    </div>
+
+    <!-- Not Found -->
+    <div id="notFound" class="text-center py-20" style="display:none">
+      <p class="text-seg-muted font-sans text-lg">案例未找到</p>
+      <a href="/portfolio.html" class="inline-block mt-4 text-seg-gold font-sans hover:underline">返回案例列表</a>
+    </div>
+
+    <!-- Detail -->
+    <div id="detail" style="display:none">
+      <!-- Cover Image -->
+      <div id="coverWrap" class="rounded-sm overflow-hidden mb-10" style="display:none">
+        <img id="coverImg" class="w-full" alt="">
+      </div>
+
+      <!-- Meta -->
+      <div class="mb-8">
+        <span class="section-eyebrow">Case Study</span>
+        <h1 id="dTitle" class="font-display text-3xl lg:text-4xl font-bold text-seg-charcoal mt-4"></h1>
+        <div class="flex items-center gap-4 mt-4">
+          <span id="dCity" class="font-sans text-seg-muted text-sm"></span>
+          <span id="dTag" class="case-tag px-3 py-1 bg-seg-green-pale text-seg-green rounded-sm"></span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <p id="dDesc" class="font-serif text-seg-muted text-lg leading-relaxed mb-10 border-l-2 border-seg-gold pl-6"></p>
+
+      <!-- Content -->
+      <div id="dContent" class="detail-content font-serif text-seg-charcoal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-seg-charcoal py-12">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="font-sans text-white/40 text-xs tracking-wide">&copy; 2024 肆意股份 · Great Decision. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const tagLabels = { luxury: '千万级豪宅', premium: '高端项目', brand: '产品系创作', video: '新媒体视频' };
+
+async function loadDetail() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  if (!slug) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('notFound').style.display = 'block';
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/cases?slug=' + encodeURIComponent(slug));
+    const cases = await res.json();
+
+    if (!cases || !cases.length) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('notFound').style.display = 'block';
+      return;
+    }
+
+    const c = cases[0];
+    document.title = c.title + ' | 肆意股份';
+
+    if (c.cover_image) {
+      document.getElementById('coverImg').src = c.cover_image;
+      document.getElementById('coverImg').alt = c.title;
+      document.getElementById('coverWrap').style.display = 'block';
+    }
+
+    document.getElementById('dTitle').textContent = c.title;
+    document.getElementById('dCity').textContent = c.city || '';
+    document.getElementById('dTag').textContent = tagLabels[c.tag] || c.tag || '';
+    document.getElementById('dDesc').textContent = c.description || '';
+    document.getElementById('dContent').innerHTML = c.content || '<p class="text-seg-muted">暂无详情内容</p>';
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('detail').style.display = 'block';
+  } catch(e) {
+    console.error(e);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('notFound').style.display = 'block';
+  }
+}
+
+loadDetail();
+</script>
+
+</body>
+</html>
