@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -48,6 +48,7 @@
     @media (min-width: 1024px) { .container { max-width: 1440px; padding: 0 4rem; } }
     html { scroll-behavior: smooth; }
   </style>
+  <link rel="stylesheet" href="/css/tailwind.min.css">
 </head>
 <body class="bg-white">
 
@@ -467,14 +468,21 @@
           yiwaiCaseGrid.innerHTML = '<p style="color:#888;">暂无案例，后台发布后将自动展示。</p>';
           return;
         }
-        yiwaiCaseGrid.innerHTML = data.map((item, idx) => (
-          '<article class="fade-in-up" style="background:#fff;border:1px solid #eee;border-radius:2px;padding:20px;">'
-            + '<span class="section-index" style="font-size:1rem;font-weight:700;">' + String(idx + 1).padStart(2, '0') + '</span>'
-            + '<h3 style="margin-top:10px;font-size:20px;color:#1A1A1A;">' + (item.title || '未命名案例') + '</h3>'
-            + '<p style="margin-top:6px;font-size:12px;letter-spacing:.08em;color:#249477;">' + (tagLabels[item.tag] || '综合服务') + '</p>'
-            + '<p style="margin-top:12px;color:#555;line-height:1.8;font-size:14px;">' + (item.description || '') + '</p>'
-          + '</article>'
-        )).join('');
+        yiwaiCaseGrid.innerHTML = data.map((item, idx) => {
+            var slug = item.slug || '';
+            var href = slug ? '/case-detail.html?slug=' + encodeURIComponent(slug) : '#';
+            var coverStyle = item.cover_image
+              ? "background-image:url('" + item.cover_image + "');background-size:cover;background-position:center;height:200px;border-radius:2px 2px 0 0;"
+              : 'display:none;';
+            return '<a href="' + href + '" class="fade-in-up" style="display:block;background:#fff;border:1px solid #eee;border-radius:2px;overflow:hidden;text-decoration:none;transition:transform 0.3s,box-shadow 0.3s;" onmouseover="this.style.transform=\'translateY(-4px)\';this.style.boxShadow=\'0 12px 24px rgba(0,0,0,0.08)\'" onmouseout="this.style.transform=\'translateY(0)\';this.style.boxShadow=\'none\'">'
+              + '<div style="' + coverStyle + '"></div>'
+              + '<div style="padding:20px;">'
+              + '<span class="section-index" style="font-size:1rem;font-weight:700;">' + String(idx + 1).padStart(2, '0') + '</span>'
+              + '<h3 style="margin-top:10px;font-size:20px;color:#1A1A1A;">' + (item.title || '未命名案例') + '</h3>'
+              + '<p style="margin-top:6px;font-size:12px;letter-spacing:.08em;color:#249477;">' + (tagLabels[item.tag] || '综合服务') + '</p>'
+              + '<p style="margin-top:12px;color:#555;line-height:1.8;font-size:14px;">' + (item.description || '') + '</p>'
+              + '</div></a>';
+          }).join('');
         document.querySelectorAll('#yiwaiCaseGrid .fade-in-up').forEach(el => observer.observe(el));
       } catch (e) {
         yiwaiCaseGrid.innerHTML = '<p style="color:#888;">案例数据加载失败，请稍后重试。</p>';

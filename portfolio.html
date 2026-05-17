@@ -7,7 +7,7 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -41,18 +41,27 @@
     .tab-btn { transition: all 0.2s ease; }
     .tab-btn.active { background: #1A1A1A; color: #fff; border-color: #1A1A1A; }
   </style>
+  <link rel="stylesheet" href="/css/tailwind.min.css">
 </head>
 <body>
 
 <!-- Header -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-seg-border/30">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-display text-xl font-bold text-seg-charcoal">GREAT DECISION</a>
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="/" class="text-seg-charcoal/75 hover:text-seg-charcoal text-sm font-sans transition-colors">首页</a>
-      <a href="/target-convey.html" class="text-seg-charcoal/75 hover:text-seg-charcoal text-sm font-sans transition-colors">目标传达</a>
-      <a href="/portfolio.html" class="text-seg-gold text-sm font-sans">案例作品集</a>
-    </nav>
+<header class="fixed top-0 left-0 right-0 z-50" style="background: rgba(14,36,32,0.55); backdrop-filter: blur(8px);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="https://cn.segxm.com" class="flex items-center gap-3 group">
+          <img src="/images/siyi-logo-white.webp" alt="SEG" class="h-7 w-auto opacity-90 group-hover:opacity-100 transition-opacity">
+          <div class="hidden sm:block">
+            <p class="text-white font-serif text-sm font-semibold leading-none tracking-wide">肆意股份</p>
+            <p class="text-white/40 text-[9px] tracking-[0.2em] mt-0.5 font-sans">SUPER ENERGY GROUP</p>
+          </div>
+        </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="/" class="text-white/75 hover:text-white text-sm font-sans transition-colors">首页</a>
+        <a href="/target-convey.html" class="text-white/75 hover:text-white text-sm font-sans transition-colors">目标传达</a>
+        <a href="/portfolio.html" class="text-seg-gold text-sm font-sans">案例作品集</a>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -61,7 +70,7 @@
   <div class="max-w-6xl mx-auto px-6 text-center">
     <span class="section-eyebrow">Portfolio</span>
     <h1 class="font-display text-4xl lg:text-5xl font-bold text-white mt-5">案例作品集</h1>
-    <p class="font-sans text-white/60 text-sm mt-4 max-w-lg mx-auto">二十余年实战积累，覆盖千万级豪宅、高端商业、品牌创作与新媒体视频</p>
+    <p class="font-sans text-white/60 text-sm mt-4 max-w-lg mx-auto">灯塔项目·城市品牌·小红书传播，二十二年深耕闽粤</p>
   </div>
 </section>
 
@@ -71,10 +80,9 @@
     <!-- Tabs -->
     <div class="flex flex-wrap gap-2 mb-10 justify-center">
       <button class="tab-btn active px-4 py-1.5 rounded-sm border border-seg-border font-sans text-xs tracking-wide" data-filter="all">全部</button>
-      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="luxury">千万级豪宅</button>
-      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="premium">高端项目</button>
-      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="brand">产品系创作</button>
-      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="video">新媒体视频</button>
+      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="lighthouse">灯塔项目</button>
+      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="citybrand">城市&品牌案例</button>
+      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="xiaohongshu">小红书传播</button>
     </div>
 
     <!-- Grid -->
@@ -90,7 +98,7 @@
 </footer>
 
 <script>
-const tagLabels = { luxury: '千万级豪宅', premium: '高端项目', brand: '产品系创作', video: '新媒体视频' };
+const tagLabels = { lighthouse: '灯塔项目', citybrand: '城市&品牌案例', xiaohongshu: '小红书传播' };
 let allCases = [];
 
 async function loadCases() {
