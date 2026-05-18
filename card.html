@@ -6,167 +6,672 @@
 <title>电子名片 · 肆意股份</title>
 <meta property="og:title" content="肆意股份 · 电子名片">
 <meta property="og:description" content="SUPER ENERGY GROUP — 用实效·专业，提升城市品牌">
-<meta property="og:image" content="https://cn.segxm.com/images/siyi-logo-white.webp">
-<link rel="stylesheet" href="/css/tailwind.min.css">
+<meta property="og:image" content="https://cn.segxm.com/images/siyi-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-  body { font-family: 'Noto Serif SC', 'Inter', serif; background: #0D1B2A; }
-  .card-glow { box-shadow: 0 0 60px rgba(201,169,110,0.15), 0 0 120px rgba(201,169,110,0.05); }
-  .action-btn { transition: all 0.3s ease; }
-  .action-btn:active { transform: scale(0.96); }
-  .gold-line { background: linear-gradient(90deg, transparent, #C9A96E, transparent); }
-  .toast {
-    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-    background: #C9A96E; color: #0D1B2A; padding: 8px 24px;
-    border-radius: 20px; font-size: 14px; font-weight: 600;
-    opacity: 0; transition: opacity 0.3s; z-index: 100; pointer-events: none;
-  }
-  .toast.show { opacity: 1; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  /* 肆意绿标准色 */
+  --green-core:    #00C853;
+  --green-bright:  #00F260;
+  --green-deep:    #00843D;
+  --green-glow:    rgba(0, 200, 83, 0.55);
+  --green-mist:    rgba(0, 242, 96, 0.18);
+}
+
+/* ─── 全局背景 ─────────────────────────────────────────── */
+body {
+  font-family: 'Noto Serif SC', serif;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 40px;
+  position: relative;
+  overflow: hidden;
+  /* 肆意绿深色背景，参考图橙色调换成绿色 */
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 10%,  rgba(0,200,83,0.45)  0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 20% 85%,  rgba(0,120,50,0.35)  0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 85% 75%,  rgba(0,80,30,0.25)   0%, transparent 50%),
+    linear-gradient(160deg, #062B14 0%, #021A0C 40%, #010E07 100%);
+}
+
+/* ─── 3D 球体（Canvas 渲染） ───────────────────────────── */
+#orb-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── 卡片容器 ────────────────────────────────────────── */
+.card-wrap {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 360px;
+  animation: cardReveal 1.1s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(48px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ─── 液态玻璃主卡片 ──────────────────────────────────── */
+.glass-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  padding: 36px 28px 32px;
+  color: #fff;
+
+  /* 核心：强毛玻璃 */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px) saturate(160%) brightness(1.05);
+  -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(1.05);
+
+  /* 玻璃边框：顶部亮、底部暗，模拟光从上方照射 */
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+  border-right-color:  rgba(255, 255, 255, 0.10);
+
+  /* 外阴影：深色底部阴影 + 绿色环境光晕 */
+  box-shadow:
+    0 2px 0   rgba(255,255,255,0.18) inset,   /* 顶部高光线 */
+    0 -1px 0  rgba(0,0,0,0.15)       inset,   /* 底部暗线 */
+    0 32px 80px rgba(0,0,0,0.55),
+    0 0 60px  rgba(0,180,70,0.12);
+}
+
+/* 顶部折射高光带 */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 5%,
+    rgba(255,255,255,0.45) 30%,
+    rgba(255,255,255,0.55) 50%,
+    rgba(255,255,255,0.30) 70%,
+    transparent 95%);
+  border-radius: 28px 28px 0 0;
+}
+
+/* 内部绿色环境光晕 */
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: -30%; left: -10%;
+  width: 120%; height: 70%;
+  background: radial-gradient(ellipse,
+    rgba(0, 220, 80, 0.07) 0%,
+    transparent 65%);
+  pointer-events: none;
+}
+
+/* ─── 姓名区 ─────────────────────────────────────────── */
+.name-hero { position: relative; z-index: 1; }
+
+.person-name {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  /* 文字本身也有轻微玻璃质感：白色 + 绿色光晕 */
+  text-shadow:
+    0 2px 20px rgba(0,0,0,0.3),
+    0 0 40px  rgba(0,220,80,0.15);
+}
+
+.person-title {
+  font-size: 11px;
+  color: var(--green-bright);
+  letter-spacing: 0.28em;
+  margin-top: 10px;
+  font-weight: 500;
+  text-shadow: 0 0 20px rgba(0,242,96,0.5);
+  text-transform: uppercase;
+}
+
+/* ─── 分割线 ─────────────────────────────────────────── */
+.glass-divider {
+  margin: 24px 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.25) 0%,
+    rgba(255,255,255,0.08) 60%,
+    transparent 100%);
+  position: relative; z-index: 1;
+}
+
+/* ─── 公司区 ─────────────────────────────────────────── */
+.company-block { position: relative; z-index: 1; }
+
+.company-name {
+  font-size: 14px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.company-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.22em;
+  margin-top: 3px;
+}
+.company-dept {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 16px;
+  /* 小标签也用玻璃质感 */
+  background: rgba(0, 200, 83, 0.12);
+  border: 1px solid rgba(0, 200, 83, 0.25);
+  border-radius: 20px;
+  font-size: 11px;
+  color: var(--green-bright);
+  letter-spacing: 0.16em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ─── 联系方式列表 ────────────────────────────────────── */
+.contact-list {
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative; z-index: 1;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  /* 嵌套玻璃：比主卡片更透 */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom-color: rgba(255,255,255,0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 6px 20px rgba(0,0,0,0.18);
+  text-decoration: none;
+  transition: all 0.28s cubic-bezier(.22,1,.36,1);
+  cursor: pointer;
+  color: inherit;
+}
+.contact-item:active {
+  transform: scale(0.975);
+  background: rgba(255, 255, 255, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.icon-circle {
+  width: 42px; height: 42px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.icon-circle svg { width: 18px; height: 18px; }
+
+.icon-phone {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+.icon-phone svg { color: #fff; }
+
+.icon-wechat {
+  background: rgba(7,193,96,0.14);
+  border: 1px solid rgba(7,193,96,0.22);
+}
+.icon-wechat svg { color: #07C160; }
+
+.icon-email {
+  background: rgba(0,200,83,0.12);
+  border: 1px solid rgba(0,200,83,0.20);
+}
+.icon-email svg { color: var(--green-bright); }
+
+.contact-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.30);
+  letter-spacing: 0.14em;
+}
+.contact-value {
+  font-size: 14px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 500;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contact-action {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.action-call {
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.action-copy {
+  background: rgba(7,193,96,0.15);
+  color: #07C160;
+  border: 1px solid rgba(7,193,96,0.15);
+}
+.action-send {
+  background: rgba(0,200,83,0.15);
+  color: var(--green-bright);
+  border: 1px solid rgba(0,200,83,0.15);
+}
+
+/* ─── 保存按钮 ───────────────────────────────────────── */
+.save-contact {
+  display: block;
+  margin-top: 14px;
+  padding: 16px;
+  text-align: center;
+  background: rgba(0, 200, 83, 0.14);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 220, 83, 0.30);
+  border-top-color: rgba(0, 220, 83, 0.45);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 rgba(0,255,100,0.15),
+    0 8px 28px rgba(0,0,0,0.22),
+    0 0 20px rgba(0,180,70,0.08);
+  color: var(--green-bright);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  transition: all 0.28s ease;
+}
+.save-contact:active {
+  transform: scale(0.975);
+  background: rgba(0, 200, 83, 0.22);
+}
+
+/* ─── Toast ─────────────────────────────────────────── */
+.toast {
+  position: fixed; top: 28px; left: 50%;
+  transform: translateX(-50%) translateY(-12px);
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 24px;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.05em;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(.22,1,.36,1);
+  z-index: 100;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ─── 底部提示 ───────────────────────────────────────── */
+.edit-hint {
+  text-align: center;
+  margin-top: 22px;
+  padding: 0 20px;
+}
+.edit-hint p {
+  font-size: 10px;
+  color: rgba(255,255,255,0.13);
+  line-height: 1.8;
+}
+.edit-hint code {
+  font-size: 9px;
+  color: rgba(255,255,255,0.18);
+  word-break: break-all;
+}
 </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body>
+
+<!-- 3D 球体 Canvas -->
+<canvas id="orb-canvas"></canvas>
 
 <div id="toast" class="toast"></div>
 
-<div class="w-full max-w-sm">
-  <!-- Card -->
-  <div class="card-glow bg-gradient-to-br from-[#1a2a3a] to-[#0D1B2A] rounded-2xl overflow-hidden">
-    <!-- Header with logo -->
-    <div class="px-6 pt-6 pb-4 text-center">
-      <div class="inline-flex items-center gap-2 mb-4">
-        <img src="/images/siyi-logo-white.webp" alt="SEG" class="h-8 opacity-90" style="filter: invert(1) brightness(0);">
-        <span class="text-white/80 text-sm tracking-[0.15em] font-sans">SUPER ENERGY GROUP</span>
-      </div>
-      <div class="gold-line h-px mb-5"></div>
-      <h1 id="card-name" class="text-white text-2xl font-semibold tracking-wide">—</h1>
-      <p id="card-title" class="text-[#C9A96E] text-sm mt-1 tracking-wider">—</p>
+<div class="card-wrap">
+  <div class="glass-card">
+    <!-- 姓名 -->
+    <div class="name-hero">
+      <div class="person-name" id="card-name">—</div>
+      <div class="person-title" id="card-title">—</div>
     </div>
 
-    <!-- Company -->
-    <div class="px-6 pb-4">
-      <div class="bg-white/5 rounded-xl p-4">
-        <p class="text-white/60 text-xs tracking-wider mb-1">肆意股份 · <span id="card-dept">目标传达</span></p>
-        <p class="text-white/40 text-[11px] leading-relaxed">用实效·专业，提升城市品牌，重塑不动产价值</p>
-      </div>
+    <div class="glass-divider"></div>
+
+    <!-- 公司 -->
+    <div class="company-block">
+      <div class="company-name">肆意股份</div>
+      <div class="company-sub">SUPER ENERGY GROUP</div>
+      <div class="company-dept" id="card-dept">目标传达</div>
     </div>
 
-    <!-- Contact Actions -->
-    <div class="px-6 pb-6 space-y-2.5">
-      <!-- Phone -->
-      <a id="phone-btn" href="tel:" class="action-btn flex items-center gap-3 bg-white/[0.07] hover:bg-white/[0.12] rounded-xl px-4 py-3 group">
-        <div class="w-9 h-9 rounded-full bg-[#C9A96E]/20 flex items-center justify-center">
-          <svg class="w-4 h-4 text-[#C9A96E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+    <!-- 联系方式 -->
+    <div class="contact-list">
+      <a id="phone-btn" href="tel:" class="contact-item">
+        <div class="icon-circle icon-phone">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
         </div>
-        <div class="flex-1">
-          <p class="text-white/50 text-[10px] tracking-wider">电话</p>
-          <p id="card-phone" class="text-white text-sm">—</p>
+        <div style="flex:1;min-width:0">
+          <div class="contact-label">电话</div>
+          <div class="contact-value" id="card-phone">—</div>
         </div>
-        <svg class="w-4 h-4 text-white/20 group-hover:text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="contact-action action-call">拨打</span>
       </a>
 
-      <!-- WeChat -->
-      <button id="wechat-btn" class="action-btn w-full flex items-center gap-3 bg-white/[0.07] hover:bg-white/[0.12] rounded-xl px-4 py-3 group text-left">
-        <div class="w-9 h-9 rounded-full bg-[#07C160]/20 flex items-center justify-center">
-          <svg class="w-4 h-4 text-[#07C160]" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.042.448l-.303 1.854a.34.34 0 00.502.36l2.18-1.3a.594.594 0 01.498-.058c.897.26 1.848.406 2.832.406.279 0 .554-.012.827-.034a6.56 6.56 0 01-.263-1.832c0-3.627 3.447-6.57 7.697-6.57.258 0 .513.013.765.036C17.666 4.636 13.558 2.188 8.691 2.188zm7.383 17.284c1.506-.9 2.468-2.27 2.468-3.806 0-2.727-2.904-4.938-6.484-4.938-3.58 0-6.484 2.21-6.484 4.938 0 2.727 2.904 4.938 6.484 4.938.65 0 1.278-.078 1.87-.22a.466.466 0 01.392.047l1.397.834a.27.27 0 00.398-.285l-.193-1.17a.466.466 0 01.352-.518z"/></svg>
+      <button id="wechat-btn" class="contact-item">
+        <div class="icon-circle icon-wechat">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.042.448l-.303 1.854a.34.34 0 00.502.36l2.18-1.3a.594.594 0 01.498-.058c.897.26 1.848.406 2.832.406.279 0 .554-.012.827-.034a6.56 6.56 0 01-.263-1.832c0-3.627 3.447-6.57 7.697-6.57.258 0 .513.013.765.036C17.666 4.636 13.558 2.188 8.691 2.188zm7.383 17.284c1.506-.9 2.468-2.27 2.468-3.806 0-2.727-2.904-4.938-6.484-4.938-3.58 0-6.484 2.21-6.484 4.938 0 2.727 2.904 4.938 6.484 4.938.65 0 1.278-.078 1.87-.22a.466.466 0 01.392.047l1.397.834a.27.27 0 00.398-.285l-.193-1.17a.466.466 0 01.352-.518z"/></svg>
         </div>
-        <div class="flex-1">
-          <p class="text-white/50 text-[10px] tracking-wider">微信号</p>
-          <p id="card-wechat" class="text-white text-sm">—</p>
+        <div style="flex:1;min-width:0">
+          <div class="contact-label">微信号</div>
+          <div class="contact-value" id="card-wechat">—</div>
         </div>
-        <span class="text-[#07C160] text-[10px] tracking-wider border border-[#07C160]/30 rounded-full px-2 py-0.5 group-hover:bg-[#07C160]/10">复制</span>
+        <span class="contact-action action-copy">复制</span>
       </button>
 
-      <!-- Email -->
-      <a id="email-btn" href="mailto:" class="action-btn flex items-center gap-3 bg-white/[0.07] hover:bg-white/[0.12] rounded-xl px-4 py-3 group">
-        <div class="w-9 h-9 rounded-full bg-blue-400/20 flex items-center justify-center">
-          <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      <a id="email-btn" href="mailto:" class="contact-item">
+        <div class="icon-circle icon-email">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
-        <div class="flex-1">
-          <p class="text-white/50 text-[10px] tracking-wider">邮箱</p>
-          <p id="card-email" class="text-white text-sm">—</p>
+        <div style="flex:1;min-width:0">
+          <div class="contact-label">邮箱</div>
+          <div class="contact-value" id="card-email">—</div>
         </div>
-        <svg class="w-4 h-4 text-white/20 group-hover:text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="contact-action action-send">发送</span>
       </a>
     </div>
   </div>
 
-  <!-- Save Contact Button -->
-  <a id="vcard-btn" href="#" class="action-btn block mt-4 w-full text-center bg-[#C9A96E] hover:bg-[#b8985d] text-[#0D1B2A] font-semibold text-sm py-3 rounded-xl tracking-wider">
-    保存到通讯录
-  </a>
+  <a id="vcard-btn" href="#" class="save-contact">↗ 保存到通讯录</a>
 
-  <!-- Edit hint -->
-  <p class="text-white/20 text-[10px] text-center mt-4 leading-relaxed">
-    编辑名片：在URL添加参数<br>
-    <code class="text-white/30">?name=姓名&title=职位&phone=电话&wechat=微信&email=邮箱&dept=部门</code>
-  </p>
+  <div class="edit-hint">
+    <p>自定义名片：修改URL参数</p>
+    <code>?name=姓名&title=职位&phone=电话&wechat=微信&email=邮箱&dept=部门</code>
+  </div>
 </div>
 
 <script>
+/* ─── URL 参数读取 ─────────────────────────────────────── */
 const defaults = {
-  name: '曾铮',
-  title: '品牌策划总监',
-  phone: '13606009988',
-  wechat: 'zhengchaost',
-  email: 'zheng@lngshi.com',
-  dept: '目标传达'
+  name: '曾铮', title: '品牌策划总监',
+  phone: '13606009988', wechat: 'zhengchaost',
+  email: 'zheng@lngshi.com', dept: '目标传达'
 };
-
 const params = new URLSearchParams(window.location.search);
 const data = {};
-for (const key in defaults) {
-  data[key] = params.get(key) || defaults[key];
-}
+for (const k in defaults) data[k] = params.get(k) || defaults[k];
 
-document.getElementById('card-name').textContent = data.name;
+document.getElementById('card-name').textContent  = data.name;
 document.getElementById('card-title').textContent = data.title;
 document.getElementById('card-phone').textContent = data.phone;
-document.getElementById('card-wechat').textContent = data.wechat;
+document.getElementById('card-wechat').textContent= data.wechat;
 document.getElementById('card-email').textContent = data.email;
-document.getElementById('card-dept').textContent = data.dept;
-document.getElementById('phone-btn').href = 'tel:' + data.phone;
-document.getElementById('email-btn').href = 'mailto:' + data.email;
+document.getElementById('card-dept').textContent  = data.dept;
+document.getElementById('phone-btn').href  = 'tel:'    + data.phone;
+document.getElementById('email-btn').href  = 'mailto:' + data.email;
+document.title = data.name + ' · 肆意股份';
 
-// Copy WeChat
+/* ─── 微信复制 ─────────────────────────────────────────── */
 document.getElementById('wechat-btn').addEventListener('click', function() {
   navigator.clipboard.writeText(data.wechat).then(function() {
     showToast('微信号已复制，去微信添加吧');
   }).catch(function() {
-    // Fallback
-    const ta = document.createElement('textarea');
+    var ta = document.createElement('textarea');
     ta.value = data.wechat;
-    document.body.appendChild(ta);
-    ta.select();
+    document.body.appendChild(ta); ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
     showToast('微信号已复制');
   });
 });
 
-// vCard
-const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:${data.name}
-ORG:肆意股份\\n${data.dept}
-TITLE:${data.title}
-TEL;TYPE=CELL:${data.phone}
-EMAIL:${data.email}
-END:VCARD`;
-
-const blob = new Blob([vcard], { type: 'text/vcard' });
-const vcardUrl = URL.createObjectURL(blob);
-document.getElementById('vcard-btn').href = vcardUrl;
+/* ─── vCard 保存 ───────────────────────────────────────── */
+var vcard = 'BEGIN:VCARD\nVERSION:3.0\nFN:' + data.name +
+  '\nORG:肆意股份\\n' + data.dept +
+  '\nTITLE:' + data.title +
+  '\nTEL;TYPE=CELL:' + data.phone +
+  '\nEMAIL:' + data.email + '\nEND:VCARD';
+var blob = new Blob([vcard], { type: 'text/vcard' });
+document.getElementById('vcard-btn').href = URL.createObjectURL(blob);
 document.getElementById('vcard-btn').download = data.name + '.vcf';
 
+/* ─── Toast ────────────────────────────────────────────── */
 function showToast(msg) {
-  const t = document.getElementById('toast');
+  var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(function() { t.classList.remove('show'); }, 2000);
+  setTimeout(function() { t.classList.remove('show'); }, 2200);
 }
 
-// Update page title
-document.title = data.name + ' · 肆意股份';
+/* ══════════════════════════════════════════════════════════
+   3D 球体渲染（Canvas）
+   参考图：橙色系大球 + 金属环 + 小球漂浮
+   本版：肆意绿色系，带高光、阴影、金属质感
+   ══════════════════════════════════════════════════════════ */
+(function() {
+  var canvas = document.getElementById('orb-canvas');
+  var ctx = canvas.getContext('2d');
+  var W, H, dpr;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+  }
+  resize();
+  window.addEventListener('resize', function() { resize(); });
+
+  /* 球体定义 */
+  var orbs = [
+    /* 左上大球 */
+    { x: 0.12, y: 0.08, r: 0.22, phase: 0,    speed: 0.0007,
+      dx: 0.025, dy: 0.030,
+      colorStop: [
+        [0,   'rgba(0,220,80,0.90)'],
+        [0.4, 'rgba(0,160,55,0.70)'],
+        [1,   'rgba(0,60,20,0.20)']
+      ],
+      highlight: 'rgba(180,255,200,0.55)',
+      shadow: 'rgba(0,0,0,0.45)'
+    },
+    /* 右上小球 */
+    { x: 0.82, y: 0.06, r: 0.10, phase: 1.8,  speed: 0.0009,
+      dx: 0.018, dy: 0.022,
+      colorStop: [
+        [0,   'rgba(80,200,120,0.85)'],
+        [0.5, 'rgba(20,120,60,0.60)'],
+        [1,   'rgba(0,40,15,0.15)']
+      ],
+      highlight: 'rgba(200,255,220,0.50)',
+      shadow: 'rgba(0,0,0,0.40)'
+    },
+    /* 左中小球 */
+    { x: 0.05, y: 0.52, r: 0.08, phase: 3.0,  speed: 0.0011,
+      dx: 0.015, dy: 0.018,
+      colorStop: [
+        [0,   'rgba(0,180,70,0.80)'],
+        [0.5, 'rgba(0,100,40,0.55)'],
+        [1,   'rgba(0,30,10,0.10)']
+      ],
+      highlight: 'rgba(160,255,180,0.45)',
+      shadow: 'rgba(0,0,0,0.35)'
+    },
+    /* 右下中球 */
+    { x: 0.88, y: 0.78, r: 0.13, phase: 0.8,  speed: 0.0008,
+      dx: 0.020, dy: 0.025,
+      colorStop: [
+        [0,   'rgba(0,200,75,0.85)'],
+        [0.4, 'rgba(0,130,50,0.65)'],
+        [1,   'rgba(0,50,20,0.15)']
+      ],
+      highlight: 'rgba(180,255,200,0.50)',
+      shadow: 'rgba(0,0,0,0.40)'
+    },
+    /* 左下小球 */
+    { x: 0.18, y: 0.88, r: 0.07, phase: 2.2,  speed: 0.0013,
+      dx: 0.012, dy: 0.016,
+      colorStop: [
+        [0,   'rgba(50,220,100,0.80)'],
+        [0.5, 'rgba(10,140,55,0.55)'],
+        [1,   'rgba(0,40,15,0.10)']
+      ],
+      highlight: 'rgba(200,255,220,0.45)',
+      shadow: 'rgba(0,0,0,0.30)'
+    },
+    /* 右中微小球 */
+    { x: 0.75, y: 0.42, r: 0.05, phase: 4.5,  speed: 0.0015,
+      dx: 0.010, dy: 0.012,
+      colorStop: [
+        [0,   'rgba(0,240,90,0.75)'],
+        [0.5, 'rgba(0,150,55,0.50)'],
+        [1,   'rgba(0,50,15,0.08)']
+      ],
+      highlight: 'rgba(220,255,230,0.50)',
+      shadow: 'rgba(0,0,0,0.25)'
+    },
+  ];
+
+  /* 金属环定义（参考图中的金属圆环） */
+  var rings = [
+    { cx: 0.20, cy: 0.62, rx: 0.16, ry: 0.07, angle: -0.4, phase: 0.5,  speed: 0.0006, color: 'rgba(0,200,80,0.55)',  width: 14 },
+    { cx: 0.78, cy: 0.32, rx: 0.10, ry: 0.04, angle:  0.3, phase: 2.0,  speed: 0.0008, color: 'rgba(0,160,60,0.40)',  width: 9  },
+  ];
+
+  var t = 0;
+
+  function drawSphere(o, t) {
+    var px = (o.x + Math.sin(t * o.speed * 1000 + o.phase) * o.dx) * W;
+    var py = (o.y + Math.cos(t * o.speed * 1000 + o.phase * 1.3) * o.dy) * H;
+    var r  = o.r * Math.min(W, H);
+
+    /* 底部阴影 */
+    var shadow = ctx.createRadialGradient(px + r*0.1, py + r*0.8, 0, px, py + r*0.6, r*1.1);
+    shadow.addColorStop(0, o.shadow);
+    shadow.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.ellipse(px, py + r*0.75, r*0.7, r*0.18, 0, 0, Math.PI*2);
+    ctx.fillStyle = shadow;
+    ctx.fill();
+
+    /* 球体主体（径向渐变模拟3D光照） */
+    var grad = ctx.createRadialGradient(
+      px - r*0.28, py - r*0.28, r*0.05,
+      px,          py,          r
+    );
+    o.colorStop.forEach(function(s) { grad.addColorStop(s[0], s[1]); });
+    ctx.beginPath();
+    ctx.arc(px, py, r, 0, Math.PI*2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    /* 高光（小椭圆，左上角） */
+    var hl = ctx.createRadialGradient(
+      px - r*0.30, py - r*0.30, 0,
+      px - r*0.20, py - r*0.20, r*0.45
+    );
+    hl.addColorStop(0, o.highlight);
+    hl.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.arc(px, py, r, 0, Math.PI*2);
+    ctx.fillStyle = hl;
+    ctx.fill();
+
+    /* 边缘暗化（模拟球体边缘衰减） */
+    var edge = ctx.createRadialGradient(px, py, r*0.65, px, py, r);
+    edge.addColorStop(0, 'transparent');
+    edge.addColorStop(1, 'rgba(0,0,0,0.35)');
+    ctx.beginPath();
+    ctx.arc(px, py, r, 0, Math.PI*2);
+    ctx.fillStyle = edge;
+    ctx.fill();
+  }
+
+  function drawRing(ring, t) {
+    var cx = (ring.cx + Math.sin(t * ring.speed * 1000 + ring.phase) * 0.02) * W;
+    var cy = (ring.cy + Math.cos(t * ring.speed * 1000 + ring.phase) * 0.02) * H;
+    var rx = ring.rx * Math.min(W, H);
+    var ry = ring.ry * Math.min(W, H);
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(ring.angle);
+
+    /* 金属环渐变 */
+    var grad = ctx.createLinearGradient(-rx, -ry, rx, ry);
+    grad.addColorStop(0,   'rgba(0,255,100,0.15)');
+    grad.addColorStop(0.3, ring.color);
+    grad.addColorStop(0.6, 'rgba(0,80,30,0.60)');
+    grad.addColorStop(1,   'rgba(0,200,70,0.20)');
+
+    ctx.beginPath();
+    ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI*2);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = ring.width;
+    ctx.stroke();
+
+    /* 高光细线 */
+    var hlGrad = ctx.createLinearGradient(-rx, -ry, rx*0.3, ry*0.3);
+    hlGrad.addColorStop(0, 'rgba(180,255,200,0.50)');
+    hlGrad.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI*2);
+    ctx.strokeStyle = hlGrad;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  var last = 0;
+  function frame(ts) {
+    t = ts;
+    ctx.clearRect(0, 0, W, H);
+
+    /* 先画环（在球后面） */
+    rings.forEach(function(r) { drawRing(r, t); });
+
+    /* 再画球 */
+    orbs.forEach(function(o) { drawSphere(o, t); });
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
