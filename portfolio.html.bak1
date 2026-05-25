@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例作品集 | 肆意股份</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            seg: {
+              green: '#2D5A4E', 'green-dark': '#1E3D35', 'green-deeper': '#162D27',
+              'green-light': '#3D7A6A', 'green-pale': '#EBF2F0',
+              gold: '#C9A84C', 'gold-light': '#E2C47A',
+              charcoal: '#1A1A1A', muted: '#6B7280', border: '#E5EAE8',
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            serif: ['"Noto Serif SC"', '"Source Han Serif SC"', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Serif SC', serif; color: #1A1A1A; background: #fff; }
+    .fade-up { opacity: 0; transform: translateY(36px); transition: opacity 0.85s cubic-bezier(.22,1,.36,1), transform 0.85s cubic-bezier(.22,1,.36,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .case-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .case-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .case-tag { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+    .section-eyebrow { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A84C; font-weight: 500; }
+    .tab-btn { transition: all 0.2s ease; }
+    .tab-btn.active { background: #1A1A1A; color: #fff; border-color: #1A1A1A; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-seg-border/30">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-display text-xl font-bold text-seg-charcoal">GREAT DECISION</a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="/" class="text-seg-charcoal/75 hover:text-seg-charcoal text-sm font-sans transition-colors">首页</a>
+      <a href="/target-convey.html" class="text-seg-charcoal/75 hover:text-seg-charcoal text-sm font-sans transition-colors">目标传达</a>
+      <a href="/portfolio.html" class="text-seg-gold text-sm font-sans">案例作品集</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="pt-32 pb-16 bg-seg-green-deeper">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <span class="section-eyebrow">Portfolio</span>
+    <h1 class="font-display text-4xl lg:text-5xl font-bold text-white mt-5">案例作品集</h1>
+    <p class="font-sans text-white/60 text-sm mt-4 max-w-lg mx-auto">二十余年实战积累，覆盖千万级豪宅、高端商业、品牌创作与新媒体视频</p>
+  </div>
+</section>
+
+<!-- Cases -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Tabs -->
+    <div class="flex flex-wrap gap-2 mb-10 justify-center">
+      <button class="tab-btn active px-4 py-1.5 rounded-sm border border-seg-border font-sans text-xs tracking-wide" data-filter="all">全部</button>
+      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="luxury">千万级豪宅</button>
+      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="premium">高端项目</button>
+      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="brand">产品系创作</button>
+      <button class="tab-btn px-4 py-1.5 rounded-sm border border-seg-border text-seg-muted font-sans text-xs tracking-wide" data-filter="video">新媒体视频</button>
+    </div>
+
+    <!-- Grid -->
+    <div id="caseGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-seg-charcoal py-12">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="font-sans text-white/40 text-xs tracking-wide">&copy; 2024 肆意股份 · Great Decision. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const tagLabels = { luxury: '千万级豪宅', premium: '高端项目', brand: '产品系创作', video: '新媒体视频' };
+let allCases = [];
+
+async function loadCases() {
+  try {
+    const res = await fetch('/api/cases?sort=-order');
+    allCases = await res.json();
+    renderCases('all');
+  } catch(e) { console.error(e); }
+}
+
+function renderCases(filter) {
+  const filtered = filter === 'all' ? allCases : allCases.filter(c => c.tag === filter);
+  const grid = document.getElementById('caseGrid');
+
+  if (!filtered.length) {
+    grid.innerHTML = '<p class="text-seg-muted text-center py-20 col-span-full">暂无案例</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(c => {
+    const cover = c.cover_image || '';
+    const bgStyle = cover
+      ? "background-image: url('" + cover + "'); background-size: cover; background-position: center;"
+      : 'background: linear-gradient(145deg, #0e1a2e 0%, #1a2e4a 50%, #243d5e 100%)';
+    const slug = c.slug || '';
+    return '<a href="/case-detail.html?slug=' + slug + '" class="case-card block rounded-sm overflow-hidden bg-white shadow-sm border border-seg-border/50">'
+      + '<div class="h-48 lg:h-56 flex flex-col justify-end p-5 relative" style="' + bgStyle + '">'
+      + '<div class="absolute top-4 right-4"><span class="case-tag px-2 py-1 bg-white/15 backdrop-blur-sm rounded-sm text-white/80">' + (tagLabels[c.tag]||'') + '</span></div>'
+      + '<div><span class="inline-block font-sans text-[10px] text-white/50 tracking-widest mb-1.5">' + (c.city||'') + '</span>'
+      + '<h3 class="font-display text-white font-bold text-lg leading-tight">' + c.title + '</h3></div></div>'
+      + '<div class="p-5 border-t border-seg-border/40"><p class="font-serif text-seg-muted text-sm leading-relaxed">' + (c.description||'') + '</p></div></a>';
+  }).join('');
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCases(btn.dataset.filter);
+  });
+});
+
+loadCases();
+</script>
+
+</body>
+</html>
