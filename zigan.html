@@ -6,10 +6,6 @@
   <title>肆意资管 · 肆意股份</title>
   <meta name="description" content="肆意资管是肆意股份旗下资产综合运营服务商，旗下设异外文化、沧江数旅、超赞文旅三家分支机构，专注文旅商业、城市更新、产业园区及乡村振兴领域。" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  
   <script>
     tailwind.config = {
       theme: {
@@ -25,11 +21,7 @@
               'light-gray': '#F5F5F5',
             }
           },
-          fontFamily: {
-            sans: ['Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
-            serif: ['Noto Serif SC', 'STSong', 'SimSun', 'serif'],
-            mono: ['Space Grotesk', 'Courier New', 'monospace'],
-          }
+          fontFamily:{sans:["PingFang SC","Hiragino Sans GB","Microsoft YaHei","sans-serif"],serif:["Songti SC","STSong","serif"]}
         }
       }
     }
@@ -124,44 +116,11 @@
       overflow-y: auto;
     }
     .bottom-sheet.open { transform: translateY(0); }
-
-    /* Logo marquee */
-    .logo-marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee-left 30s linear infinite;
-    }
-    .logo-marquee-reverse {
-      animation: marquee-right 28s linear infinite;
-    }
-    .logo-marquee-inner {
-      display: flex;
-      align-items: center;
-    }
-    .logo-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 36px;
-      border-right: 1px solid #e8e8e8;
-      height: 88px;
-      flex-shrink: 0;
-      transition: filter 0.3s ease, opacity 0.3s ease;
-      filter: grayscale(100%) opacity(0.55);
-    }
-    .logo-item:hover { filter: grayscale(0%) opacity(1); cursor: default; }
-    .logo-item img { height: 36px; width: auto; max-width: 140px; object-fit: contain; display: block; }
-    .logo-marquee-wrapper:hover .logo-marquee-track { animation-play-state: paused; }
-    @keyframes marquee-left {
-      0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    @keyframes marquee-right {
-      0%   { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .logo-marquee-track, .logo-marquee-reverse { animation: none; }
     }
 
     /* Mobile menu */
@@ -169,6 +128,20 @@
     #mobile-menu.open { display: block; }
   </style>
   <link rel="stylesheet" href="/css/tailwind.min.css">
+  <style>
+:root{--font-serif:"Songti SC","STSong","Noto Serif SC",serif;--font-sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;--font-display:"Space Grotesk","SF Mono","Menlo",monospace}
+body{font-family:var(--font-sans)}.font-serif,[class*="font-display"]{font-family:var(--font-serif)}
+</style>
+  <style>
+/* System font stack — replaces Google Fonts for China accessibility */
+:root {
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-display: "Space Grotesk", "SF Mono", "Menlo", monospace;
+}
+body { font-family: var(--font-sans); }
+.font-serif, [class*="font-display"] { font-family: var(--font-serif); }
+</style>
 </head>
 <body class="bg-white">
 
@@ -500,99 +473,59 @@
       </div>
     </div>
   </section>
-
-  <!-- Clients -->
-  <section id="clients" style="background-color: #F5F5F5;" class="py-24 md:py-32">
-    <div class="container">
-      <div class="fade-in-up">
-        <p class="section-index mb-4">05 / CLIENTS</p>
-        <h2 class="mb-12 text-3xl md:text-4xl" style="color: #1A1A1A;">合作伙伴</h2>
+  <section id="partners" class="py-24 lg:py-32 bg-seg-green-deeper overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 mb-14">
+      <div class="text-center fade-up">
+        <span class="section-eyebrow" style="color:#C9A84C;">
+          <span style="background:#C9A84C;width:24px;height:1px;display:inline-block;"></span>
+          Partners
+          <span style="background:#C9A84C;width:24px;height:1px;display:inline-block;"></span>
+        </span>
+        <h2 class="font-display text-3xl lg:text-4xl font-bold text-white mt-5 mb-3">合作伙伴</h2>
+        <p class="font-serif text-white/50 text-sm">二十余年，与各时代头部房企并肩作战</p>
       </div>
-      <div class="fade-in-up">
-        <p class="mb-10 text-sm" style="color: #888;">2018-2025 Selected Clients</p>
-
-        <!-- Logo Marquee Row 1 -->
-        <div class="logo-marquee-wrapper" style="overflow: hidden; position: relative; margin-bottom: 0;">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:80px;z-index:2;background:linear-gradient(to right,#F5F5F5,transparent);"></div>
-          <div style="position:absolute;right:0;top:0;bottom:0;width:80px;z-index:2;background:linear-gradient(to left,#F5F5F5,transparent);"></div>
-          <div class="logo-marquee-track" id="track1">
-            <div class="logo-marquee-inner">
-              <div class="logo-item"><img src="/images/lianfa.png" alt="联发集团"></div>
-              <div class="logo-item"><img src="/images/lianfa_shangzhi.png" alt="联发商置"></div>
-              <div class="logo-item"><img src="/images/lianfa_huamei.png" alt="联发华美空间"></div>
-              <div class="logo-item"><img src="/images/lianfa_minnan.png" alt="联发闽南天地"></div>
-              <div class="logo-item"><img src="/images/powerlong.png" alt="宝龙商业"></div>
-              <div class="logo-item"><img src="/images/jianjian_shangguang.png" alt="建发商管"></div>
-              <div class="logo-item"><img src="/images/wanyuecheng.png" alt="湾悦城"></div>
-              <div class="logo-item"><img src="/images/pinshang.png" alt="品尚中心"></div>
-              <div class="logo-item"><img src="/images/ioimall.png" alt="iOi MALL"></div>
-              <div class="logo-item"><img src="/images/lianfa_2e.png" alt="联发2E"></div>
-              <div class="logo-item"><img src="/images/ouyangshuyuan.png" alt="欧阳书院"></div>
-              <div class="logo-item"><img src="/images/wenguang.png" alt="文广体育"></div>
-              <div class="logo-item"><img src="/images/yilie.png" alt="猎列"></div>
-            </div>
-            <div class="logo-marquee-inner" aria-hidden="true">
-              <div class="logo-item"><img src="/images/lianfa.png" alt="联发集团"></div>
-              <div class="logo-item"><img src="/images/lianfa_shangzhi.png" alt="联发商置"></div>
-              <div class="logo-item"><img src="/images/lianfa_huamei.png" alt="联发华美空间"></div>
-              <div class="logo-item"><img src="/images/lianfa_minnan.png" alt="联发闽南天地"></div>
-              <div class="logo-item"><img src="/images/powerlong.png" alt="宝龙商业"></div>
-              <div class="logo-item"><img src="/images/jianjian_shangguang.png" alt="建发商管"></div>
-              <div class="logo-item"><img src="/images/wanyuecheng.png" alt="湾悦城"></div>
-              <div class="logo-item"><img src="/images/pinshang.png" alt="品尚中心"></div>
-              <div class="logo-item"><img src="/images/ioimall.png" alt="iOi MALL"></div>
-              <div class="logo-item"><img src="/images/lianfa_2e.png" alt="联发2E"></div>
-              <div class="logo-item"><img src="/images/ouyangshuyuan.png" alt="欧阳书院"></div>
-              <div class="logo-item"><img src="/images/wenguang.png" alt="文广体育"></div>
-              <div class="logo-item"><img src="/images/yilie.png" alt="猎列"></div>
-            </div>
-          </div>
-        </div>
-
-        <div style="height:1px;background:linear-gradient(to right,transparent,#ddd 20%,#ddd 80%,transparent);margin:0;"></div>
-
-        <!-- Logo Marquee Row 2 (reverse) -->
-        <div class="logo-marquee-wrapper" style="overflow: hidden; position: relative; margin-bottom: 0;">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:80px;z-index:2;background:linear-gradient(to right,#F5F5F5,transparent);"></div>
-          <div style="position:absolute;right:0;top:0;bottom:0;width:80px;z-index:2;background:linear-gradient(to left,#F5F5F5,transparent);"></div>
-          <div class="logo-marquee-track logo-marquee-reverse" id="track2">
-            <div class="logo-marquee-inner">
-              <div class="logo-item"><img src="/images/richunvpao.png" alt="日出女跑"></div>
-              <div class="logo-item"><img src="/images/bohui.png" alt="泊寓"></div>
-              <div class="logo-item"><img src="/images/sugeliancha.png" alt="苏阁鲜茶"></div>
-              <div class="logo-item"><img src="/images/putian_coffee.png" alt="莆田川咖啡"></div>
-              <div class="logo-item"><img src="/images/tangchen.png" alt="汤臣倍健"></div>
-              <div class="logo-item"><img src="/images/septwolves.png" alt="七匹狼"></div>
-              <div class="logo-item"><img src="/images/yulanyu.png" alt="玉兰油 OLAY"></div>
-              <div class="logo-item"><img src="/images/midea.png" alt="美的"></div>
-              <div class="logo-item"><img src="/images/xiaomason.png" alt="小马宋"></div>
-              <div class="logo-item"><img src="/images/yangyi_cow.png" alt="认养一头牛"></div>
-              <div class="logo-item"><img src="/images/tebu.png" alt="特步"></div>
-              <div class="logo-item"><img src="/images/361.png" alt="361°"></div>
-              <div class="logo-item"><img src="/images/mdsk.png" alt="摩登天空MDSK"></div>
-              <div class="logo-item"><img src="/images/pg.png" alt="P&G"></div>
-            </div>
-            <div class="logo-marquee-inner" aria-hidden="true">
-              <div class="logo-item"><img src="/images/richunvpao.png" alt="日出女跑"></div>
-              <div class="logo-item"><img src="/images/bohui.png" alt="泊寓"></div>
-              <div class="logo-item"><img src="/images/sugeliancha.png" alt="苏阁鲜茶"></div>
-              <div class="logo-item"><img src="/images/putian_coffee.png" alt="莆田川咖啡"></div>
-              <div class="logo-item"><img src="/images/tangchen.png" alt="汤臣倍健"></div>
-              <div class="logo-item"><img src="/images/septwolves.png" alt="七匹狼"></div>
-              <div class="logo-item"><img src="/images/yulanyu.png" alt="玉兰油 OLAY"></div>
-              <div class="logo-item"><img src="/images/midea.png" alt="美的"></div>
-              <div class="logo-item"><img src="/images/xiaomason.png" alt="小马宋"></div>
-              <div class="logo-item"><img src="/images/yangyi_cow.png" alt="认养一头牛"></div>
-              <div class="logo-item"><img src="/images/tebu.png" alt="特步"></div>
-              <div class="logo-item"><img src="/images/361.png" alt="361°"></div>
-              <div class="logo-item"><img src="/images/mdsk.png" alt="摩登天空MDSK"></div>
-              <div class="logo-item"><img src="/images/pg.png" alt="P&G"></div>
-            </div>
-          </div>
-        </div>
+    </div>
+    <!-- Marquee -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-0">
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-01.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-02.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-03.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-04.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-05.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-06.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-07.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-08.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-09.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-10.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-11.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-12.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-13.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-14.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-15.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-16.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-17.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-18.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-19.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-20.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-21.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-22.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-23.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-25.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-26.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-29.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-30.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-31.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-33.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-34.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-24.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-27.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-28.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
+          <div class="flex items-center justify-center p-0"><img src="/images/partners-white/logo-32.png" alt="合作伙伴" class="h-[200px] w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" loading="lazy"></div>
       </div>
     </div>
   </section>
+
 
   <!-- Contact -->
   <section id="contact" class="py-24 md:py-32">

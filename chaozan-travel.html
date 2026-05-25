@@ -6,9 +6,6 @@
   <title>超赞文旅 · 肆意股份</title>
   <meta name="description" content="超赞文旅是肆意股份旗下商业地产全过程服务品牌，提供定位、设计、招商、运营与物业管理等全链路能力。" />
   <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
   <script>
     tailwind.config = {
       theme: {
@@ -27,11 +24,7 @@
               border:   '#E5EAE8',
             }
           },
-          fontFamily: {
-            display: ['"Playfair Display"', 'Georgia', 'serif'],
-            serif:   ['"Noto Serif SC"', '"Source Han Serif SC"', 'serif'],
-            sans:    ['Inter', 'system-ui', 'sans-serif'],
-          }
+          fontFamily:{sans:["PingFang SC","Hiragino Sans GB","Microsoft YaHei","sans-serif"],serif:["Songti SC","STSong","serif"]}
         }
       }
     }
@@ -87,6 +80,20 @@
     @media(max-width:768px){ .lifecycle-step:not(:last-child)::after { display:none; } }
   </style>
   <link rel="stylesheet" href="/css/tailwind.min.css">
+  <style>
+:root{--font-display:"Georgia","Times New Roman","Playfair Display",serif;--font-serif:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;--font-sans:"Inter","-apple-system","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+body{font-family:var(--font-sans)}.font-serif,[class*="font-display"]{font-family:var(--font-serif)}
+</style>
+  <style>
+/* System font stack — replaces Google Fonts for China accessibility */
+:root {
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-display: "Space Grotesk", "SF Mono", "Menlo", monospace;
+}
+body { font-family: var(--font-sans); }
+.font-serif, [class*="font-display"] { font-family: var(--font-serif); }
+</style>
 </head>
 <body class="bg-white">
 

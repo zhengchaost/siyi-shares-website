@@ -6,10 +6,6 @@
   <title>异外文化 · 肆意股份</title>
   <meta name="description" content="异外文化是肆意股份旗下文商旅品牌策划机构，专注商业空间、品牌建设与商业IP全案服务，探索未知，创造异外。" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  
   <script>
     tailwind.config = {
       theme: {
@@ -25,11 +21,7 @@
               'light-gray': '#F5F5F5',
             }
           },
-          fontFamily: {
-            sans: ['Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
-            serif: ['Noto Serif SC', 'STSong', 'SimSun', 'serif'],
-            mono: ['Space Grotesk', 'Courier New', 'monospace'],
-          }
+          fontFamily:{sans:["PingFang SC","Hiragino Sans GB","Microsoft YaHei","sans-serif"],serif:["Songti SC","STSong","serif"]}
         }
       }
     }
@@ -49,6 +41,20 @@
     html { scroll-behavior: smooth; }
   </style>
   <link rel="stylesheet" href="/css/tailwind.min.css">
+  <style>
+:root{--font-serif:"Songti SC","STSong","Noto Serif SC",serif;--font-sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;--font-display:"Space Grotesk","SF Mono","Menlo",monospace}
+body{font-family:var(--font-sans)}.font-serif,[class*="font-display"]{font-family:var(--font-serif)}
+</style>
+  <style>
+/* System font stack — replaces Google Fonts for China accessibility */
+:root {
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-display: "Space Grotesk", "SF Mono", "Menlo", monospace;
+}
+body { font-family: var(--font-sans); }
+.font-serif, [class*="font-display"] { font-family: var(--font-serif); }
+</style>
 </head>
 <body class="bg-white">
 
