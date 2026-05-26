@@ -584,17 +584,26 @@ body { font-family: var(--font-sans); }
       grid.innerHTML = filtered.map(c => {
         const coverUrl = c.cover_image || '';
         const fallbackGrad = 'linear-gradient(145deg, #0e1a2e 0%, #1a2e4a 50%, #243d5e 100%)';
-        const bgStyle = coverUrl
-          ? "background-image: url('" + coverUrl + "'); background-size: cover; background-position: center;"
-          : 'background: ' + fallbackGrad;
         const slug = c.slug || '';
         return '<div class="case-card rounded-sm overflow-hidden bg-white shadow-sm cursor-pointer border border-seg-border/50" onclick="location.href=\'/case-detail.html?slug=' + slug + '\'">'
-          + '<div class="h-44 lg:h-52 flex flex-col justify-end p-5 relative" style="' + bgStyle + '">'
+          + '<div class="h-44 lg:h-52 flex flex-col justify-end p-5 relative case-cover" style="background:' + fallbackGrad + ';background-size:cover;background-position:center;" data-cover="' + coverUrl + '">'
           + '<div class="absolute top-4 right-4"><span class="case-tag px-2 py-1 bg-white/15 backdrop-blur-sm rounded-sm text-white/80">' + (tagLabels[c.tag]||'') + '</span></div>'
           + '<div><span class="inline-block font-sans text-[10px] text-white/50 tracking-widest mb-1.5">' + (c.city||'') + '</span>'
           + '<h3 class="font-display text-white font-bold text-lg leading-tight">' + c.title + '</h3></div></div>'
           + '<div class="p-5 border-t border-seg-border/40"><p class="font-serif text-seg-muted text-sm leading-relaxed">' + (c.description||'') + '</p></div></div>';
       }).join('');
+
+      // Lazy load covers with IntersectionObserver  
+      const obs = new IntersectionObserver((ents) => {
+        ents.forEach(e => {
+          if (e.isIntersecting) {
+            const el = e.target, url = el.dataset.cover;
+            if(url){el.style.backgroundImage="url('"+url+"')";el.classList.add("cover-loaded");}
+            obs.unobserve(el);
+          }
+        });
+      },{rootMargin:"80px",threshold:0});
+      document.querySelectorAll(".case-cover").forEach(el=>obs.observe(el));
     }
 
     renderCases('all');
